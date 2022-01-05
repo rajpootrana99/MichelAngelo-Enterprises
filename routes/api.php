@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 //BookingController Route
 Route::post('createBooking', 'BookingController@createBooking');
+Route::post('scheduleBooking', 'BookingController@scheduleBooking');
+Route::get('fetchBookings', 'BookingController@fetchBookings');
+
+//ServiceController Route
+Route::get('fetchServices', 'ServiceController@fetchServices');
