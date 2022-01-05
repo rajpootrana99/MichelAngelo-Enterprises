@@ -21,6 +21,12 @@
             <li>
                 <a href="{{ route('service.index') }}"><i data-feather="clipboard" class="align-self-center menu-icon"></i><span>Services</span></a>
             </li>
+            <li>
+                <a href="{{ route('booking.index') }}"><i data-feather="shopping-cart" class="align-self-center menu-icon"></i><span>Bookings</span></a>
+            </li>
+            <li>
+                <a href="{{ route('notification.index') }}"><i data-feather="bell" class="align-self-center menu-icon"></i><span>Notifications</span></a>
+            </li>
         </ul>
     </div>
 </div>
