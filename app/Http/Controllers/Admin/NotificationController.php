@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notification;
+use App\Models\Token;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -52,70 +53,78 @@ class NotificationController extends Controller
         if (!$validator->passes()){
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
-        $response = '';
+        try {
+            $response = '';
 
-        $SERVER_API_KEY = 'AAAALiDuRoo:APA91bG9vg88duBhYDWTgfRSlkFBwDbUVipBk61XolqZMZePc-6bcB0jZ9GZXufX0Dq0H0nIZW0m27ihhMXgzqEPfc2juNFuW-PNbaIkKXjqHDlut3JvTSsNYLeOaqcsI6ZRHdWHsSK4';
-        if ($request->device_id){
-            $tokens = Token::whereIn('nurse_id', $request->device_id)->get();
+            $SERVER_API_KEY = 'AAAALiDuRoo:APA91bG9vg88duBhYDWTgfRSlkFBwDbUVipBk61XolqZMZePc-6bcB0jZ9GZXufX0Dq0H0nIZW0m27ihhMXgzqEPfc2juNFuW-PNbaIkKXjqHDlut3JvTSsNYLeOaqcsI6ZRHdWHsSK4';
+            if ($request->device_id){
+                $tokens = Token::whereIn('nurse_id', $request->device_id)->get();
+            }
+            else {
+                $tokens = Token::all();
+            }
+            foreach ($tokens as $token){
+                $token_1 = $token->token;
+
+                $data = [
+
+                    "registration_ids" => [
+                        $token_1
+                    ],
+
+                    "notification" => [
+
+                        "title" => $request->input('title'),
+
+                        "body" => $request->input('body'),
+
+                        "sound" => "default" // required for sound on ios
+
+                    ],
+
+                ];
+
+                $dataString = json_encode($data);
+
+                $headers = [
+
+                    'Authorization: key=' . $SERVER_API_KEY,
+
+                    'Content-Type: application/json',
+
+                ];
+
+                $ch = curl_init();
+
+                curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+
+                curl_setopt($ch, CURLOPT_POST, true);
+
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+                $response = curl_exec($ch);
+            }
+            if ($response){
+                Notification::create([
+                    'title' => $request->input('title'),
+                    'body' => $request->input('body'),
+                ]);
+                $message = 'Notification send successfully';
+            }
+            else{
+                $message = 'Notification not send';
+            }
+            return response()->json(['status' => 1, 'message' => $message,]);
+        }catch (\Exception $exception){
+            return response()->json($exception->getMessage());
         }
-        else {
-            $tokens = Token::all();
-        }
-        foreach ($tokens as $token){
-            $token_1 = $token->token;
 
-            $data = [
-
-                "registration_ids" => [
-                    $token_1
-                ],
-
-                "notification" => [
-
-                    "title" => $request->input('title'),
-
-                    "body" => $request->input('body'),
-
-                    "sound" => "default" // required for sound on ios
-
-                ],
-
-            ];
-
-            $dataString = json_encode($data);
-
-            $headers = [
-
-                'Authorization: key=' . $SERVER_API_KEY,
-
-                'Content-Type: application/json',
-
-            ];
-
-            $ch = curl_init();
-
-            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-
-            curl_setopt($ch, CURLOPT_POST, true);
-
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-
-            $response = curl_exec($ch);
-        }
-
-        if ($response) {
-            Notification::create([
-                'title' => $request->input('title'),
-                'body' => $request->input('body'),
-            ]);
-        }
-        return response()->json(['status' => 1, 'message' => 'Notification Send Successfully',]);
     }
 
     /**

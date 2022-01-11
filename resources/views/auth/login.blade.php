@@ -10,10 +10,11 @@
         <div class="tab-pane active p-3" id="LogIn_Tab" role="tabpanel">
             <form class="form-horizontal auth-form" method="post" action="{{ route('login') }}">
                 @csrf
+                <span class="text-sm" style="color: red">{{ $errors->first() }}</span>
                 <div class="form-group mb-2">
                     <label for="name">Email</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email">
+                        <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email" value="{{ old('email') }}">
                     </div>
                 </div><!--end form-group-->
 

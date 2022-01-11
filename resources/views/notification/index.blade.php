@@ -134,10 +134,11 @@
                             $('#addNotificationForm')[0].reset();
                             $('#addNotification').modal('hide');
                             fetchNotifications();
+                            alert(response.message)
                         }
                     },
                     error: function (error){
-                        $('#addNotification').modal('show')
+                        $('#addNotification').modal('show');
                     }
                 });
             });

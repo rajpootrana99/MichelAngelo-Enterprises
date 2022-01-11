@@ -30,8 +30,8 @@
                                 <tr>
                                     <th width="5%">#</th>
                                     <th width="20%">Service Name</th>
-                                    <th width="20%">Description</th>
-                                    <th>Price</th>
+                                    <th>Description</th>
+                                    <th width="20%">Price</th>
                                     <th width="3%"><i class="fa fa-edit"></i></th>
                                     <th width="3%"><i class="fa fa-trash"></i></th>
                                 </tr>
