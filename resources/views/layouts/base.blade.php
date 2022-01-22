@@ -68,8 +68,8 @@
     <script src="{{ asset('plugins/select2/select2.min.js')}}"></script>
     <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
 
-    <script src="{{ asset('plugins/apex-charts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('assets/pages/jquery.analytics_dashboard.init.js') }}"></script>
+{{--    <script src="{{ asset('plugins/apex-charts/apexcharts.min.js') }}"></script>--}}
+{{--    <script src="{{ asset('assets/pages/jquery.analytics_dashboard.init.js') }}"></script>--}}
 
     <script src="{{ asset('plugins/dropify/js/dropify.min.js') }}"></script>
     <script src="{{ asset('assets/pages/jquery.form-upload.init.js') }}"></script>
@@ -79,11 +79,11 @@
     <script src="{{ asset('plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js')}}"></script>
     <script src="{{ asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
     <script src="{{ asset('assets/pages/jquery.forms-advanced.js')}}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUan3-abHNhvaItsv0gCemR5DzDJjJXFQ&libraries=places&callback=initialize" async defer></script>
+{{--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUan3-abHNhvaItsv0gCemR5DzDJjJXFQ&libraries=places&callback=initialize" async defer></script>--}}
 
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+{{--    <script src="{{ asset('js/script.js') }}"></script>--}}
 
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <!-- socket.io cdn -->

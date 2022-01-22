@@ -24,6 +24,8 @@
                         </div>
                     </div><!--end card-header-->
                     <div class="card-body">
+                        <div class="alert alert-success border-0" style="display: none" role="alert" id="success_alert"></div>
+                        <div class="alert alert-danger border-0" style="display: none" role="alert" id="warning_alert"></div>
                         <div class="table-responsive">
                             <table class="table table-bordered mb-0 table-centered">
                                 <thead>
@@ -134,11 +136,20 @@
                             $('#addNotificationForm')[0].reset();
                             $('#addNotification').modal('hide');
                             fetchNotifications();
-                            alert(response.message)
+                            $('#success_alert').html('<strong>Success! </strong>'+response.message)
+                            $('#success_alert').css('display', 'block')
+                            setTimeout(function () {
+                                $('#success_alert').css('display', 'none')
+                            }, 5000)
                         }
                     },
                     error: function (error){
                         $('#addNotification').modal('show');
+                        $('#warning_alert').html('<strong>Warning! </strong>'+error.message)
+                        $('#warning_alert').css('display', 'block')
+                        setTimeout(function () {
+                            $('#warning_alert').css('display', 'none')
+                        }, 5000)
                     }
                 });
             });

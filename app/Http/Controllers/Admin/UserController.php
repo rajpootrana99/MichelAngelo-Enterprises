@@ -96,6 +96,7 @@ class UserController extends Controller
                 'message' => 'User not exist',
             ]);
         }
+        $user->bookings()->delete();
         $user->delete();
         return response()->json([
             'status' => true,

@@ -24,6 +24,8 @@
                         </div>
                     </div><!--end card-header-->
                     <div class="card-body">
+                        <div class="alert alert-success border-0" style="display: none" role="alert" id="success_alert"></div>
+                        <div class="alert alert-danger border-0" style="display: none" role="alert" id="warning_alert"></div>
                         <div class="table-responsive">
                             <table class="table table-bordered mb-0 table-centered">
                                 <thead>
@@ -233,10 +235,20 @@
                     success: function (response) {
                         if (response.status == 0) {
                             $('#deleteService').modal('hide');
+                            $('#warning_alert').html('<strong>Warning! </strong>'+response.message)
+                            $('#warning_alert').css('display', 'block')
+                            setTimeout(function () {
+                                $('#warning_alert').css('display', 'none')
+                            }, 5000)
                         }
                         else {
                             fetchServices();
                             $('#deleteService').modal('hide');
+                            $('#warning_alert').html('<strong>Warning! </strong>'+response.message)
+                            $('#warning_alert').css('display', 'block')
+                            setTimeout(function () {
+                                $('#warning_alert').css('display', 'none')
+                            }, 5000)
                         }
                     }
                 });
@@ -288,6 +300,11 @@
                         }else {
                             $('#editServiceForm')[0].reset();
                             $('#editService').modal('hide');
+                            $('#success_alert').html('<strong>Success! </strong>'+response.message)
+                            $('#success_alert').css('display', 'block')
+                            setTimeout(function () {
+                                $('#success_alert').css('display', 'none')
+                            }, 5000)
                             fetchServices();
                         }
                     },
@@ -319,11 +336,21 @@
                         }else {
                             $('#addServiceForm')[0].reset();
                             $('#addService').modal('hide');
+                            $('#success_alert').html('<strong>Success! </strong>'+response.message)
+                            $('#success_alert').css('display', 'block')
+                            setTimeout(function () {
+                                $('#success_alert').css('display', 'none')
+                            }, 5000)
                             fetchServices();
                         }
                     },
                     error: function (error){
                         $('#addService').modal('show')
+                        $('#warning_alert').html('<strong>Warning! </strong>'+error.message)
+                        $('#warning_alert').css('display', 'block')
+                        setTimeout(function () {
+                            $('#warning_alert').css('display', 'none')
+                        }, 5000)
                     }
                 });
             });

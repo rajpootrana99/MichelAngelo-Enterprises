@@ -136,6 +136,7 @@ class ServiceController extends Controller
                 'message' => 'Service not exist',
             ]);
         }
+        $service->bookings()->delete();
         $service->delete();
         return response()->json([
             'status' => 1,
