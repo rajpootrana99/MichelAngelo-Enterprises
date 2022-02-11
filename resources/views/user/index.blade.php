@@ -30,8 +30,8 @@
                                     <tr>
                                         <th width="5%">#</th>
                                         <th width="20%">Name</th>
-                                        <th>Email</th>
                                         <th width="20%">Phone</th>
+                                        <th>Address</th>
                                         <th width="3%"><i class="fa fa-trash"></i></th>
                                     </tr>
                                 </thead>
@@ -96,8 +96,8 @@
                             $('tbody').append('<tr>\
                             <td>'+user.id+'</td>\
                             <td>'+user.name+'</td>\
-                            <td>'+user.email+'</td>\
                             <td>'+user.phone+'</td>\
+                            <td>'+user.address+'</td>\
                             <td><button value="'+user.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                     </tr>');
                         });
