@@ -31,6 +31,10 @@ class AuthController extends Controller
         ], 201);
     }
 
+    public function user(){
+        return response()->json(Auth::user());
+    }
+
     public function updateAddress(Request $request){
         $user = User::find(Auth::id());
         $user->update($request->all());
