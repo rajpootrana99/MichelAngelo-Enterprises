@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -30,6 +31,11 @@ class AuthController extends Controller
         ], 201);
     }
 
+    public function updateAddress(Request $request){
+        $user = User::find(Auth::id());
+        $user->update($request->all());
+        return response()->json($user);
+    }
     public function logout(){
         auth()->user()->tokens()->delete();
         return response()->json([
