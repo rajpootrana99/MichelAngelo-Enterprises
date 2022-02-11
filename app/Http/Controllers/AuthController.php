@@ -12,8 +12,10 @@ class AuthController extends Controller
         $request->validate([
             'phone' => 'required',
         ]);
-
+        $token = random_int(0000, 9999);
+        $user = 'user_'.$token;
         $user = User::updateOrCreate([
+            'name' => $user,
             'phone' => $request->input('phone'),
             'balance' => 0,
         ]);
