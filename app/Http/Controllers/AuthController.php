@@ -14,7 +14,7 @@ class AuthController extends Controller
         ]);
         $token = random_int(0000, 9999);
         $user = 'user_'.$token;
-        $user = User::firstOrNew(
+        $user = User::firstOrCreate(
             ['phone' => $request->input('phone')],
             [
                 'name' => $user,
