@@ -208,7 +208,7 @@
                             <td>'+service.id+'</td>\
                             <td><img src="storage/'+service.image+'" alt="" class="rounded-circle thumb-xs mr-1">'+service.name+'</td>\
                             <td>'+service.description+'</td>\
-                            <td>'+service.price.toFixed(2)+'</td>\
+                            <td>'+Number(service.price).toFixed(2)+'</td>\
                             <td><button value="'+service.id+'" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
                             <td><button value="'+service.id+'" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                     </tr>');
