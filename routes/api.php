@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::post('updateAddress', 'AuthController@updateAddress')->middleware('auth:sanctum');
-Route::post('user', 'AuthController@user')->middleware('auth:sanctum');
+Route::get('user', 'AuthController@user')->middleware('auth:sanctum');
 Route::post('logout', 'AuthController@logout')->middleware('auth:sanctum');
 
 //BookingController Route
