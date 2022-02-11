@@ -28,7 +28,7 @@ class BookingController extends Controller
     }
 
     public function fetchBookings(){
-        $bookings = Booking::with('service')->where('user_id', Auth::id());
+        $bookings = Booking::with('service')->where('user_id', Auth::id())->get();
         return response()->json($bookings);
     }
 
