@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -44,10 +45,11 @@ class BookingController extends Controller
                 'message' =>$message->first()
             ],401);
         }
+        $date = DateTime::createFromFormat($request->input('date'))->format("Y-m-d");
         $booking = Booking::create([
             'user_id' => Auth::id(),
             'service_id' => $request->input('service_id'),
-            'date' => $request->input('date'),
+            'date' => $date,
         ]);
         return response()->json($booking);
     }
