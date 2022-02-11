@@ -13,7 +13,7 @@ class AuthController extends Controller
             'phone' => 'required',
         ]);
 
-        $user = User::create([
+        $user = User::updateOrCreate([
             'phone' => $request->input('phone'),
             'balance' => 0,
         ]);
